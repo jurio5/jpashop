@@ -7,7 +7,7 @@ spring:
 #
 #  jpa:
 #    hibernate:
-#      ddl-auto: create
+#      ddl-auto: create-drop
 #    properties:
 #      hibernate:
 ##        show_sql: true // 이 부분은 System.out 으로 출력되기에 권장치않음
