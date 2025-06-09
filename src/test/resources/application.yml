@@ -1,17 +1,18 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:test
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: create
-    properties:
-      hibernate:
-#        show_sql: true // 이 부분은 System.out 으로 출력되기에 권장치않음
-        format_sql: true
+#  datasource:
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+##        show_sql: true // 이 부분은 System.out 으로 출력되기에 권장치않음
+#        format_sql: true
+# 위의 설정이 없어도 스프링 부트에선 임베디드 메모리로 실행
 
 logging:
   level:
