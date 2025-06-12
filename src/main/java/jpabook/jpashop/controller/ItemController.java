@@ -1,5 +1,6 @@
 package jpabook.jpashop.controller;
 
+import jpabook.jpashop.domain.dto.UpdateItemDto;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.domain.service.ItemService;
@@ -61,8 +62,8 @@ public class ItemController {
         return "items/updateItemForm";
     }
 
-    @PostMapping("/items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("form") BookForm form) {
+//    @PostMapping("/items/{itemId}/edit")
+    public String updateItemV1(@ModelAttribute("form") BookForm form) {
 
         Book book = new Book();
         book.setId(form.getId());
@@ -74,6 +75,27 @@ public class ItemController {
 
         itemService.saveItem(book);
 
+        return "redirect:/items";
+    }
+
+//    @PostMapping("/items/{itemId}/edit")
+    public String updateItemV2(@PathVariable Long itemId, @ModelAttribute("form") BookForm form) {
+        itemService.updateItemV2(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
+        return "redirect:/items";
+    }
+
+    /**
+     * 파라미터가 많아질 경우
+     */
+//    @PostMapping("/items/{itemId}/edit")
+    public String updateItemV3(@PathVariable Long itemId, @ModelAttribute("form") UpdateItemDto updateItemDto) {
+        itemService.updateItemV3(itemId, updateItemDto);
+        return "redirect:/items";
+    }
+
+    @PostMapping("/items/{itemId}/edit")
+    public String updateItemV4(@PathVariable Long itemId, @ModelAttribute("form") UpdateItemDto updateItemDto) {
+        itemService.updateItemV4(itemId, updateItemDto);
         return "redirect:/items";
     }
 }
