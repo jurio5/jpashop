@@ -29,11 +29,11 @@ public class ItemController {
     @PostMapping("/items/new")
     public String create(BookForm form) {
         Book book = new Book();
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
+        book.setName(form.name());
+        book.setPrice(form.price());
+        book.setStockQuantity(form.stockQuantity());
+        book.setAuthor(form.author());
+        book.setIsbn(form.isbn());
 
         itemService.saveItem(book);
         return "redirect:/";
@@ -50,13 +50,13 @@ public class ItemController {
     public String updateItemForm(@PathVariable Long itemId, Model model) {
         Book item = (Book) itemService.findOne(itemId);
 
-        BookForm form = new BookForm();
-        form.setId(item.getId());
-        form.setName(item.getName());
-        form.setPrice(item.getPrice());
-        form.setStockQuantity(item.getStockQuantity());
-        form.setAuthor(item.getAuthor());
-        form.setIsbn(item.getIsbn());
+        BookForm form = new BookForm(
+                item.getId(),
+                item.getName(),
+                item.getPrice(),
+                item.getStockQuantity(),
+                item.getAuthor(),
+                item.getIsbn());
 
         model.addAttribute("form", form);
         return "items/updateItemForm";
@@ -66,12 +66,12 @@ public class ItemController {
     public String updateItemV1(@ModelAttribute("form") BookForm form) {
 
         Book book = new Book();
-        book.setId(form.getId());
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
+        book.setId(form.id());
+        book.setName(form.name());
+        book.setPrice(form.price());
+        book.setStockQuantity(form.stockQuantity());
+        book.setAuthor(form.author());
+        book.setIsbn(form.isbn());
 
         itemService.saveItem(book);
 
@@ -80,7 +80,7 @@ public class ItemController {
 
 //    @PostMapping("/items/{itemId}/edit")
     public String updateItemV2(@PathVariable Long itemId, @ModelAttribute("form") BookForm form) {
-        itemService.updateItemV2(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
+        itemService.updateItemV2(itemId, form.name(), form.price(), form.stockQuantity());
         return "redirect:/items";
     }
 

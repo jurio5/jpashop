@@ -1,18 +1,15 @@
 package jpabook.jpashop.controller;
 
-import lombok.Getter;
-import lombok.Setter;
+public record BookForm(
+        Long id,
+        String name,
+        int price,
+        int stockQuantity,
+        String author,
+        String isbn
+) {
 
-@Getter
-@Setter
-public class BookForm {
-
-    private Long id;
-
-    private String name;
-    private int price;
-    private int stockQuantity;
-
-    private String author;
-    private String isbn;
+    public BookForm() {
+        this(null, null, 0, 0, null, null);
+    }
 }
