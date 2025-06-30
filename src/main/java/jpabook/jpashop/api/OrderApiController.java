@@ -36,7 +36,27 @@ public class OrderApiController {
 
     @GetMapping("/v2/orders")
     public List<OrderDto> ordersV2() {
-        return orderRepository.findAllByString(new OrderSearch()).stream()
+        List<Order> orders = orderRepository.findAllByString(new OrderSearch());
+
+
+        for (Order order : orders) {
+            System.out.println("o = " + order + "o.getId = " + order.getId());
+        }
+
+        return orders.stream()
+                .map(o -> new OrderDto(o))
+                .toList();
+    }
+
+    @GetMapping("/v3/orders")
+    public List<OrderDto> ordersV3() {
+        List<Order> orders = orderRepository.findAllWithItem();
+
+        for (Order order : orders) {
+            System.out.println("o = " + order + "o.getId = " + order.getId());
+        }
+
+        return orders.stream()
                 .map(o -> new OrderDto(o))
                 .toList();
     }
