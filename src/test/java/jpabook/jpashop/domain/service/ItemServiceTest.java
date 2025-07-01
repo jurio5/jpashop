@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain.service;
 
 import jpabook.jpashop.domain.item.Book;
+import jpabook.jpashop.service.ItemService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
