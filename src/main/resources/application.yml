@@ -17,7 +17,7 @@ spring:
 #        show_sql: true // 이 부분은 System.out 으로 출력되기에 권장치않음
         format_sql: true
         default_batch_fetch_size: 100
-    open-in-view: false
+    open-in-view: true
 
 logging:
   level:
